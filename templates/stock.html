@@ -9,6 +9,18 @@
 
     <title>Welborn Milestone Project</title>
 
+    <link rel="stylesheet" href="http://cdn.bokeh.org/bokeh/release/bokeh-2.3.2.min.css" type="text/css" />
+
+    <!-- BokehJS imports for plotting-->
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.3.2.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.3.2.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.3.2.min.js"
+        crossorigin="anonymous"></script>
+    
+    {{ bk_script | safe }}
+
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -36,7 +48,7 @@
           <form action="/stock" method="get">
             <div class="form-group">
               <label for="ticker">Ticker Symbol:</label>
-              <input type="text" class="form-control form-control-large" id="ticker" name="ticker" placeholder="GOOG">
+              <input type="text" class="form-control form-control-large" id="ticker" name="ticker" placeholder="GOOG" value="{{ ticker }}"">
             </div>
             <p>Price Options:</p>
             <div class="form-check">
@@ -72,7 +84,12 @@
             <button type="submit" class="btn btn-lg btn-primary">Submit</button>
           </form>
         </div>
-
+        <div class="col-lg-9">
+          <h3 class="text-primary">{{ ticker }}</h3>
+          <div class="bokeh">
+            {{ bk_div | safe }}
+          </div>
+        </div>
       </div>
     </div>
 
